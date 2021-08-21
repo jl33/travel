@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
+using Travel.Domain.Entities;
+
+namespace Travel.Application.Common.Interfaces
+{
+    public interface IApplicationDbContext
+    {
+        DbSet<TourList> TourLists { get; set; }
+        DbSet<TourPackage> TourPackages { get; set; }
+        Task<int> SaveChangeAsync(CancellationToken cancellationToken);
+    }
+}
