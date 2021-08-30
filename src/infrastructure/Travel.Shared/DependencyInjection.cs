@@ -18,7 +18,7 @@ namespace Travel.Shared
         {
             services.Configure<MailSettings>(config.GetSection("MailSettings"));
             services.AddTransient<IDateTime, dateTimeService>();
-            services.AddTransient<IEmailService, EmailServoice>();
+            services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
             return services;

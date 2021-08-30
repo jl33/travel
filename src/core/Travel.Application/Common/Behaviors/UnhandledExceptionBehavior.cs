@@ -16,7 +16,7 @@ namespace Travel.Application.Common.Behaviors
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(TRequest request,CancellationToken cancellation,RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request,CancellationToken cancellationToken,RequestHandlerDelegate<TResponse> next)
         {
             try { return await next(); }
             catch(Exception ex)

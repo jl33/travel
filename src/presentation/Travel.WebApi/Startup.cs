@@ -14,7 +14,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 //using Travel.Data.Contexts;
 using Travel.Application;
-using Travel.WebApi.Filter;
+using Travel.WebApi.Filters;
 using Travel.Data;
 using Travel.Shared;
 

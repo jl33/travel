@@ -15,11 +15,11 @@ using Travel.Domain.Settings;
 
 namespace Travel.Shared.Services
 {
-    public class EmailServoice:IEmailService
+    public class EmailService:IEmailService
     {
         private MailSettings MailSettings { get; }
-        private ILogger<EmailServoice> Logger { get; }
-        public EmailServoice(IOptions<MailSettings> mailSettings, ILogger<EmailServoice> logger)
+        private ILogger<EmailService> Logger { get; }
+        public EmailService(IOptions<MailSettings> mailSettings, ILogger<EmailService> logger)
         {
             MailSettings = mailSettings.Value;
             Logger = logger;

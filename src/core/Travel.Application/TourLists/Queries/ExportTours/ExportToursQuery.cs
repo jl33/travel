@@ -40,7 +40,7 @@ namespace Travel.Application.TourLists.Queries.ExportTours
 
             vm.Content = _fileBuilder.BuildTourPackagesFile(records);
             vm.ContentType = "text/csv";
-            vm.FileName = "TourPackage.csv";
+            vm.FileName = "TourPackages.csv";
             return await Task.FromResult(vm);
         }
     }

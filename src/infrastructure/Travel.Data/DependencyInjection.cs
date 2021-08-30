@@ -12,10 +12,10 @@ namespace Travel.Data
     {
    
 
-      services.AddDbContext<TravelDbContext>(options => options
+      services.AddDbContext<ApplicationDbContext>(options => options
         .UseSqlite("Data Source=TravelTourDatabase.sqlite3"));
 
-      services.AddScoped<IApplicationDbContext>(provider => provider.GetService<IApplicationDbContext>());
+      services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
       return services;
     }

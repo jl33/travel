@@ -36,7 +36,7 @@ namespace Travel.Application.TourLists.Commands.DeleteTourList
             }
 
             _context.TourLists.Remove(entity);
-            await _context.SaveChangeAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

@@ -29,7 +29,7 @@ namespace Travel.Application.TourLists.Commands.CreateTourList
         {
             var entity = new TourList { City = request.City };
             _context.TourLists.Add(entity);
-            await _context.SaveChangeAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return entity.Id;
         }

@@ -10,7 +10,7 @@ using Travel.Domain.Entities;
 
 namespace Travel.Application.TourPackages.Commands.UpdateTourPackage
 {
-    public class UpdateTourPackageCommand:IRequest
+    public partial class UpdateTourPackageCommand:IRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -33,7 +33,7 @@ namespace Travel.Application.TourPackages.Commands.UpdateTourPackage
                 throw new NotFoundException(nameof(TourPackage), request.Id);
             }
             entity.Name = request.Name;
-            await _context.SaveChangeAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

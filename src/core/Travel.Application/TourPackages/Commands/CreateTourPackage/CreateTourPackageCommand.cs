@@ -46,7 +46,7 @@ namespace Travel.Application.TourPackages.Commands.CreateTourPackage
             };
 
             _context.TourPackages.Add(entity);
-            await _context.SaveChangeAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return entity.Id;
         }

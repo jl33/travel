@@ -19,6 +19,8 @@ namespace Travel.Application.Common.Exceptions
             {
                 var propertyName = failureGroup.Key;
                 var propertyFailures = failureGroup.ToArray();
+
+                Errors.Add(propertyName, propertyFailures);
             }
         }
         public IDictionary<string, string[]> Errors { get; }

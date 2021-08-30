@@ -12,6 +12,6 @@ namespace Travel.Application.Common.Interfaces
     {
         DbSet<TourList> TourLists { get; set; }
         DbSet<TourPackage> TourPackages { get; set; }
-        Task<int> SaveChangeAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

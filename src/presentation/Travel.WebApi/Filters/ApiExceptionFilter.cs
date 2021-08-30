@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Travel.Application.Common.Exceptions;
 
-namespace Travel.WebApi.Filter
+namespace Travel.WebApi.Filters
 {
     public class ApiExceptionFilter: ExceptionFilterAttribute
     {
@@ -37,10 +37,10 @@ namespace Travel.WebApi.Filter
                 return;
             }
 
-            HandleUnknowException(context);
+            HandleUnknownException(context);
         }
 
-        private void HandleUnknowException(ExceptionContext context)
+        private void HandleUnknownException(ExceptionContext context)
         {
             var details = new ProblemDetails
             {
@@ -74,7 +74,7 @@ namespace Travel.WebApi.Filter
             var details = new ProblemDetails()
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
-                Title = "The specified resource wa not found.",
+                Title = "The specified resource was not found.",
                 Detail = exception.Message
             };
 
