@@ -12,7 +12,7 @@ using Travel.Application.TourLists.Commands.UpdateTourList;
 using Travel.Application.TourLists.Queries.ExportTours;
 using Travel.Application.TourLists.Queries.GetTours;
 
-namespace Travel.WebApi.Controllers
+namespace Travel.WebApi.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -64,7 +64,7 @@ namespace Travel.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id,UpdateTourListCommand command) //[FromRoute] int id, [FromBody] TourList tourList)
+        public async Task<ActionResult> Update(int id, UpdateTourListCommand command) //[FromRoute] int id, [FromBody] TourList tourList)
         {
             //_context.Update(tourList);
             //await _context.SaveChangesAsync();

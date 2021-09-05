@@ -12,11 +12,11 @@ using Travel.Application.TourPackages.Commands.UpdateTourPackage;
 using Travel.Application.TourPackages.Commands.UpdateTourPackageDetail;
 
 
-namespace Travel.WebApi.Controllers
+namespace Travel.WebApi.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TourPackagesController: ApiController //ControllerBase
+    public class TourPackagesController : ApiController //ControllerBase
     {
         //private readonly TravelDbContext _context;
 
@@ -59,7 +59,7 @@ namespace Travel.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id,UpdateTourPackageCommand command) //[FromRoute] int id,[FromBody] TourPackage tourPackage)
+        public async Task<ActionResult> Update(int id, UpdateTourPackageCommand command) //[FromRoute] int id,[FromBody] TourPackage tourPackage)
         {
             //_context.Update(tourPackage);
             //await _context.SaveChangesAsync();
