@@ -16,10 +16,10 @@ namespace Travel.Identity.Helpers
         private readonly RequestDelegate _next;
         private readonly AuthSettings _authSettings;
 
-        public JwtMiddleware(RequestDelegate next, IOptions<AuthSettings> authSettings)
+        public JwtMiddleware(RequestDelegate next, IOptions<AuthSettings> appSettings)
         {
             _next = next;
-            _authSettings = authSettings.Value;
+            _authSettings = appSettings.Value;
         }
 
         public async Task Invoke(HttpContext context, IUserService userService)

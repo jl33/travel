@@ -21,6 +21,10 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Travel.WebApi.Helpers;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
+using Travel.Application.Common.Interfaces;
+using Travel.Identity;
+using Travel.Identity.Helpers;
+using Travel.Identity.Services;
 
 namespace Travel.WebApi
 {
@@ -41,6 +45,7 @@ namespace Travel.WebApi
             services.AddApplication();
             services.AddInfrastructureData();
             services.AddInfrastructureShared(Configuration);
+            services.AddInfrastructureIdentity(Configuration);
 
             services.AddHttpContextAccessor();
 
@@ -53,6 +58,32 @@ namespace Travel.WebApi
             {
                 //c.SwaggerDoc("v1", new OpenApiInfo { Title = "Travel.WebApi", Version = "v1" });
                 c.OperationFilter<SwaggerDefaultValues>();
+
+                //allow to enter JWT in Sawgger request
+                //describ how API is protected
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer"
+                });
+
+                //add global security requirement
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                    {
+                        Reference=new OpenApiReference
+                        {
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                        }
+                    },new List<string>() 
+                    }
+                });
             });
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
@@ -92,6 +123,8 @@ namespace Travel.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthorization();
 
