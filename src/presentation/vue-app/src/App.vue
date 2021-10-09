@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <NavigationBar />
+    <!-- <NavigationBar /> -->
+    <navigation-bar />
     <!-- <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -41,10 +42,12 @@
 </template>
 
 <script>
-import NavigationBar from "@/components/NavigationBar";
+// import NavigationBar from "@/components/NavigationBar";
+import NavigationBar from './components/NavigationBar.vue';
 export default {
   name: "App",
   components:{
+    // NavigationBar
     NavigationBar
   },
   // data: () => ({
