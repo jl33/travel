@@ -30,6 +30,9 @@
     <ProjectReference Include="..\..\infrastructure\Travel.Shared\Travel.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

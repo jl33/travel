@@ -10,6 +10,8 @@ using Travel.Application.TourPackages.Commands.CreateTourPackage;
 using Travel.Application.TourPackages.Commands.DeleteTourPackage;
 using Travel.Application.TourPackages.Commands.UpdateTourPackage;
 using Travel.Application.TourPackages.Commands.UpdateTourPackageDetail;
+using Travel.Application.TourPackages.Queries;
+using Travel.Application.Dtos.Tour;
 
 
 namespace Travel.WebApi.Controllers.v1
@@ -18,6 +20,11 @@ namespace Travel.WebApi.Controllers.v1
     [Route("api/[controller]")]
     public class TourPackagesController : ApiController //ControllerBase
     {
+        [HttpGet]
+        public async Task<ActionResult<List<TourPackageDto>>> GetTourPackages([FromQuery] GetTourPackagesQuery query)
+        {
+            return await Mediator.Send(query);
+        }
         //private readonly TravelDbContext _context;
 
         //public TourPackagesController(TravelDbContext context)

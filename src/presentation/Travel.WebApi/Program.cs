@@ -23,7 +23,7 @@ namespace Travel.WebApi
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .Enrich.WithMachineName()
-                .Enrich.WithProperty("Aessembly", $"{name.Name}")
+                .Enrich.WithProperty("Assembly", $"{name.Name}")
                 .Enrich.WithProperty("Assembly", $"{name.Version}")
                 .WriteTo.SQLite(Environment.CurrentDirectory + @"/Logs/log.db", restrictedToMinimumLevel: LogEventLevel.Information, storeTimestampInUtc: true)
                 .WriteTo.File(new CompactJsonFormatter(), Environment.CurrentDirectory + @"/Logs/log.json", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
