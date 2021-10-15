@@ -1,8 +1,12 @@
 <template>
-    <div><div><div class="text-h2 my-4">WratherForecast</div></div></div>
+    <div><div><div class="text-h2 my-4">WeatherForecast</div></div></div>
 </template>
 <script>
-export default {
-    name:"WeatherForecast",
-};
+    import { getWeatherForecastV2Axios } from "@/api/weather-forecast-services";
+    export default {
+        name: "WeatherForecast",
+        async mounted() {
+            await getWeatherForecastV2Axios("TPE");
+        },
+    };
 </script>

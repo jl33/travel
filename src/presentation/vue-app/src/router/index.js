@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Main/Home.vue";
+import Home from "@/views/Main/Home";
 import TourLists from "@/views/AdminDashboard/TourLists";
-import TourPackages from "../views/AdminDashboard/TourPackages";
+import TourPackages from "@/views/AdminDashboard/TourPackages";
 
 Vue.use(VueRouter);
 
@@ -19,19 +19,19 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Main/About.vue"),
+      import(/* webpackChunkName: "about" */ "@/views/Main/About"),
   },
   {
     path: "/admin-dashboard",
-    component: () => import("../views/AdminDashboard"),
+    component: () => import("@/views/AdminDashboard"),
     children: [
       {
         path: "",
-        component: () => import("../views/AdminDashboard/DefaultContent"),
+        component: () => import("@/views/AdminDashboard/DefaultContent"),
       },
       {
         path: "weather-forecast",
-        component: () => import("../views/AdminDashboard/WeatherForecast"),
+        component: () => import("@/views/AdminDashboard/WeatherForecast"),
       },
       {
         path: "tour-lists",
