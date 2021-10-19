@@ -1,0 +1,2 @@
+export const LOADING_TOUR="LOADING_TUOR";
+export const GET_TOUR_LISTS="GET_TUOR_LISTS";
