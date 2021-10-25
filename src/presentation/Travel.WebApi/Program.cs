@@ -19,14 +19,22 @@ namespace Travel.WebApi
         public static int Main(string[] args)
         {
             var name = Assembly.GetExecutingAssembly().GetName();
-            Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .Enrich.WithMachineName()
                 .Enrich.WithProperty("Assembly", $"{name.Name}")
                 .Enrich.WithProperty("Assembly", $"{name.Version}")
-                .WriteTo.SQLite(Environment.CurrentDirectory + @"/Logs/log.db", restrictedToMinimumLevel: LogEventLevel.Information, storeTimestampInUtc: true)
-                .WriteTo.File(new CompactJsonFormatter(), Environment.CurrentDirectory + @"/Logs/log.json", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
+                .WriteTo.SQLite(
+                	Environment.CurrentDirectory + @"/Logs/log.db", 
+                	restrictedToMinimumLevel: LogEventLevel.Information, 
+                	storeTimestampInUtc: true)
+                .WriteTo.File(
+                	new CompactJsonFormatter(), 
+                	Environment.CurrentDirectory + @"/Logs/log.json", 
+                	rollingInterval: RollingInterval.Day, 
+                	restrictedToMinimumLevel: LogEventLevel.Information)
                 .WriteTo.Console()
                 .CreateLogger();
 

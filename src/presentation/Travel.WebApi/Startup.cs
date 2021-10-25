@@ -26,6 +26,8 @@ using Travel.Shared;
 using Travel.WebApi.Filters;
 using Travel.WebApi.Helpers;
 using Travel.WebApi.Extensions;
+using Microsoft.AspNetCore.SpaServices;
+using VueCliMiddleware;
 
 namespace Travel.WebApi
 {
@@ -104,6 +106,13 @@ namespace Travel.WebApi
             //    options.GroupNameFormat = "'v'VVV";
             //    options.SubstituteApiVersionInUrl = true;
             //});
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "../vue-app/dist";
+            });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -125,6 +134,21 @@ namespace Travel.WebApi
                 //});
             }
 
+            app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+
+            }
+            app.UseCors(b =>
+            {
+                b.AllowAnyOrigin();
+                b.AllowAnyHeader();
+                b.AllowAnyMethod();
+            });
+
+
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -136,6 +160,15 @@ namespace Travel.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "../vue-app";
+                if (env.IsDevelopment())
+                {
+                    spa.UseVueCli(npmScript: "serve");
+                }
             });
         }
     }

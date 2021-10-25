@@ -14,8 +14,8 @@ using Travel.Application.TourLists.Queries.GetTours;
 
 namespace Travel.WebApi.Controllers.v1
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    // [ApiController]
+    // [Route("api/[controller]")]
     public class TourListsController : ApiController //ControllerBase
     {
         //private readonly TravelDbContext _context;

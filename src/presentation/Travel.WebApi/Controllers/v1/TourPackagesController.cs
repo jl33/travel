@@ -16,8 +16,8 @@ using Travel.Application.Dtos.Tour;
 
 namespace Travel.WebApi.Controllers.v1
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    // [ApiController]
+    // [Route("api/[controller]")]
     public class TourPackagesController : ApiController //ControllerBase
     {
         [HttpGet]
