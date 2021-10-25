@@ -7,9 +7,24 @@
       Two-week weather forecast of different cities
     </div>
     <div class="v-picker-full-width d-flex justify-center" v-if="loading">
-      <v-progress-circular :size="70" :width="7" color="purple" indeterminate>
+      <v-progress-circular 
+      :size="70" 
+      :width="7" 
+      color="purple" 
+      indeterminate>
       </v-progress-circular>
     </div>
+    <v-select
+      @change="fetchWeatherForecast"
+      v-model="selectedCity"
+      :items="cities"
+      label="City"
+      persistent-hint
+      return-object
+      single-line
+      clearable
+    >
+    </v-select>
     <v-simple-table>
       <template v-slot:default>
         <thead>
@@ -42,6 +57,7 @@
 import { getWeatherForecastV2Axios } from "@/api/weather-forecast-services";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "WeatherForecast",
@@ -51,6 +67,8 @@ export default {
     dayjs.extend(relativeTime);
     await this.fetchWeatherForecast(this.selectedCity);
     this.loading = false;
+    await this.getTourListsAction();
+    this.cities = this.lists.map((pl) => pl.city);
   },
   data() {
     return {
@@ -61,6 +79,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("tourModule", ["getTourListsAction"]),
     async fetchWeatherForecast(city = "Oslo") {
       this.loading = true;
       try {
@@ -104,6 +123,11 @@ export default {
           return "grey";
       }
     },
+  },
+  computed: {
+    ...mapGetters("tourModule", {
+      lists: "lists",
+    }),
   },
 };
 </script>

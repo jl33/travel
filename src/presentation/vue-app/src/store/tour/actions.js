@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { getTourListsAxios } from "./services";
+import { getTourListsAxios } from "@/store/tour/services";
 export async function getTourListsAction({ commit }) {
   commit(types.LOADING_TOUR, true);
   try {

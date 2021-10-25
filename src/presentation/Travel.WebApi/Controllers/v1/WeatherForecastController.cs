@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Travel.WebApi.Controllers.v1
 {
-    //[ApiController]
-    //[Route("[controller]")]
+    // [ApiController]
+    // [Route("[controller]")]
     [ApiVersion("1.0",Deprecated =true)]
     public class WeatherForecastController : ApiController
     {
