@@ -1,5 +1,6 @@
 import * as types from "./types";
-import { getTourListsAxios } from "@/store/tour/services";
+import { getTourListsAxios, deleteTourListAxios } from "@/store/tour/services";
+
 export async function getTourListsAction({ commit }) {
   commit(types.LOADING_TOUR, true);
   try {
@@ -10,5 +11,17 @@ export async function getTourListsAction({ commit }) {
     console.log(e);
   }
 
+  commit(types.LOADING_TOUR, false);
+}
+
+export async function removeTourListAction({ commit }, payload) {
+  commit(types.LOADING_TOUR, true);
+  try {
+    await deleteTourListAxios(payload);
+    commit(types.REMOVE_TOUR_LIST, payload);
+  } catch (e) {
+    alert(e);
+    console.log(e);
+  }
   commit(types.LOADING_TOUR, false);
 }

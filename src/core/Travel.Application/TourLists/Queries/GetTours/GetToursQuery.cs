@@ -15,9 +15,7 @@ using Newtonsoft.Json;
 
 namespace Travel.Application.TourLists.Queries.GetTours
 {
-    public class GetToursQuery : IRequest<ToursVm>
-    {
-    }
+    public class GetToursQuery : IRequest<ToursVm> { }
 
     public class GetToursQueryHandler : IRequestHandler<GetToursQuery, ToursVm>
     {
@@ -43,8 +41,10 @@ namespace Travel.Application.TourLists.Queries.GetTours
             {
                 tourLists = new ToursVm
                 {
-                    Lists = await _context.TourLists.ProjectTo<TourListDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(t => t.City).ToListAsync(cancellationToken)
+                    Lists = await _context.TourLists
+                        .ProjectTo<TourListDto>(_mapper.ConfigurationProvider)
+                        .OrderBy(t => t.City)
+                        .ToListAsync(cancellationToken)
                 };
                 serializedTourList = JsonConvert.SerializeObject(tourLists);
                 redisTourLists = Encoding.UTF8.GetBytes(serializedTourList);
@@ -52,9 +52,7 @@ namespace Travel.Application.TourLists.Queries.GetTours
                 var options = new DistributedCacheEntryOptions()
                     .SetAbsoluteExpiration(DateTime.Now.AddMinutes(5))
                     .SetSlidingExpiration(TimeSpan.FromMinutes(1));
-
-                await _distributedCache.SetAsync(
-                    cacheKey, redisTourLists, options, cancellationToken);
+                await _distributedCache.SetAsync(cacheKey, redisTourLists, options, cancellationToken);
                 return tourLists;
             }
 
