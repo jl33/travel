@@ -4,6 +4,7 @@
     <div class="default-content">
       <div style="margin-right: 4rem; margin-bottom: 4rem">
         <TourListsCard />
+        <add-tour-list-form />
       </div>
     </div>
   </div>
@@ -11,6 +12,7 @@
 <script>
 import { mapActions } from "vuex";
 import TourListsCard from "@/components/TourListsCard";
+import AddTourListForm from "../../components/AddTourListForm.vue";
 
 export default {
   name: "DefaultContent",
@@ -21,7 +23,7 @@ export default {
     this.getTourListsAction();
   },
   components: {
-    TourListsCard,
+    TourListsCard, AddTourListForm,
   },
 };
 </script>
