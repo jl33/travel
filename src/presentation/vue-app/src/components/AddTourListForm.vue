@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { getCountryList } from "../helpers/collections";
+import { getCountryList } from "@/helpers/collections";
 import { mapActions } from "vuex";
 
 export default {

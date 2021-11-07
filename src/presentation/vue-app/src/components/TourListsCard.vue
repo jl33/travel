@@ -14,7 +14,8 @@
     </v-toolbar>
     <v-list-item-group color="primary">
       <v-list-item v-for="tourList in lists" :key="tourList.id">
-        <v-list-item-content>
+        <v-list-item-content
+        @click="addToPackages(tourList.tourPackages, tourList.id)">
           <v-list-item-title v-text="tourList.city"></v-list-item-title>
           <v-list-item-subtitle v-text="tourList.about"></v-list-item-subtitle>
         </v-list-item-content>
@@ -22,7 +23,9 @@
           <div class="mr-2">
             {{ tourList.tourPackages && tourList.tourPackages.length }}
           </div>
-          <v-icon @click="removeTourList(tourList.id)"> mdi-delete-outline </v-icon>
+          <v-icon @click="removeTourList(tourList.id)"> 
+          mdi-delete-outline 
+          </v-icon>
         </v-list-item-action>
       </v-list-item>
     </v-list-item-group>
@@ -40,13 +43,20 @@ export default {
     }),
   },
   methods: {
-    ...mapActions("tourModule", ["removeTourListAction"]),
+    ...mapActions("tourModule", [
+      "removeTourListAction",
+      "getPackagesOfSelectedCityAction",
+      ]),
     removeTourList(listId) {
       const confirmed = confirm(
         "You sure you want to delete this tour list? This will also delete the packages permanently"
       );
       if (!confirmed) return;
       this.removeTourListAction(listId);
+    },
+    addToPackages(packages,listId) {
+      this.getPackagesOfSelectedCityAction(packages);
+      this.$emit("handleShowPackages",true,listId);
     },
   },
 };
