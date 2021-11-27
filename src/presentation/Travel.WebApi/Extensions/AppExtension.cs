@@ -16,8 +16,8 @@ namespace Travel.WebApi.Extensions
             {
                 foreach (var description in provider.ApiVersionDescriptions)
                 {
-                    c.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
-                        description.GroupName.ToUpperInvariant());
+                    c.SwaggerEndpoint(
+                    	$"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                 }
             });
         }

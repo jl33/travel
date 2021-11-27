@@ -54,8 +54,10 @@ namespace Travel.WebApi
 
             services.AddControllers();
 
-            services.AddControllersWithViews(options => options.Filters.Add(new ApiExceptionFilter()));
-            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+            services.AddControllersWithViews(options => 
+            options.Filters.Add(new ApiExceptionFilter()));
+            services.Configure<ApiBehaviorOptions>(options => 
+            options.SuppressModelStateInvalidFilter = true);
 
             services.AddApiVersioningExtension();
             services.AddVersionedApiExplorerExtension();

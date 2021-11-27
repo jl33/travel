@@ -47,23 +47,7 @@ namespace Travel.WebApi.Controllers.v1
             return await Mediator.Send(command);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id) //[FromRoute] int id)
-        {
-            //var tourPackage = await _context.TourPackages.SingleOrDefaultAsync(tp => tp.Id == id);
-            //if (tourPackage == null)
-            //{
-            //    return NotFound();
-            //}
 
-            //_context.TourPackages.Remove(tourPackage);
-            //await _context.SaveChangesAsync();
-
-            //return Ok(tourPackage);
-            await Mediator.Send(new DeleteTourPackageCommand { Id = id });
-
-            return NoContent();
-        }
 
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, UpdateTourPackageCommand command) //[FromRoute] int id,[FromBody] TourPackage tourPackage)
@@ -79,11 +63,28 @@ namespace Travel.WebApi.Controllers.v1
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult> UpdateItemDetails(int id, UpdateTourPackageDetailCommand command)
+        public async Task<ActionResult> UpdatePackageDetails(int id, UpdateTourPackageDetailCommand command)
         {
             if (id != command.Id)
                 return BadRequest();
             await Mediator.Send(command);
+
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id) //[FromRoute] int id)
+        {
+            //var tourPackage = await _context.TourPackages.SingleOrDefaultAsync(tp => tp.Id == id);
+            //if (tourPackage == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //_context.TourPackages.Remove(tourPackage);
+            //await _context.SaveChangesAsync();
+
+            //return Ok(tourPackage);
+            await Mediator.Send(new DeleteTourPackageCommand { Id = id });
 
             return NoContent();
         }
