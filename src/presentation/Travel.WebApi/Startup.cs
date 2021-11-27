@@ -54,8 +54,10 @@ namespace Travel.WebApi
 
             services.AddControllers();
 
-            services.AddControllersWithViews(options => options.Filters.Add(new ApiExceptionFilter()));
-            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+            services.AddControllersWithViews(options => 
+            options.Filters.Add(new ApiExceptionFilter()));
+            services.Configure<ApiBehaviorOptions>(options => 
+            options.SuppressModelStateInvalidFilter = true);
 
             services.AddApiVersioningExtension();
             services.AddVersionedApiExplorerExtension();
@@ -133,6 +135,21 @@ namespace Travel.WebApi
                 //    }
                 //});
             }
+
+            app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+
+            }
+            app.UseCors(b =>
+            {
+                b.AllowAnyOrigin();
+                b.AllowAnyHeader();
+                b.AllowAnyMethod();
+            });
+
+
 
             app.UseStaticFiles();
             if (!env.IsDevelopment())

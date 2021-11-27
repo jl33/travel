@@ -37,6 +37,13 @@ namespace Travel.WebApi.Controllers.v1
             return await Mediator.Send(new GetToursQuery());
         }
 
+        [HttpGet("{id}")]
+        public async Task<FileResult> Get(int id)
+        {
+            var vm = await Mediator.Send(new ExportToursQuery { ListId = id });
+            return File(vm.Content, vm.ContentType, vm.FileName);
+        }
+        
         [HttpPost]
         public async Task<ActionResult<int>> Create(CreateTourListCommand command) //[FromBody] TourList tourList)
         {
@@ -44,6 +51,22 @@ namespace Travel.WebApi.Controllers.v1
             //await _context.SaveChangesAsync();
             //return Ok(tourList);
             return await Mediator.Send(command);
+        }
+
+
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(int id, UpdateTourListCommand command) //[FromRoute] int id, [FromBody] TourList tourList)
+        {
+            //_context.Update(tourList);
+            //await _context.SaveChangesAsync();
+            //return Ok(tourList);
+            if (id != command.Id)
+                return BadRequest();
+
+            await Mediator.Send(command);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
@@ -63,25 +86,5 @@ namespace Travel.WebApi.Controllers.v1
             return NoContent();
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, UpdateTourListCommand command) //[FromRoute] int id, [FromBody] TourList tourList)
-        {
-            //_context.Update(tourList);
-            //await _context.SaveChangesAsync();
-            //return Ok(tourList);
-            if (id != command.Id)
-                return BadRequest();
-
-            await Mediator.Send(command);
-
-            return NoContent();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<FileResult> Get(int id)
-        {
-            var vm = await Mediator.Send(new ExportToursQuery { ListId = id });
-            return File(vm.Content, vm.ContentType, vm.FileName);
-        }
     }
 }

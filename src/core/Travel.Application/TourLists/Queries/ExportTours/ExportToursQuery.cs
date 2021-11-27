@@ -34,7 +34,8 @@ namespace Travel.Application.TourLists.Queries.ExportTours
         {
             var vm = new ExportToursVm();
 
-            var records = await _context.TourPackages.Where(t => t.ListId == request.ListId)
+            var records = await _context.TourPackages
+            .Where(t => t.ListId == request.ListId)
                 .ProjectTo<TourPackageRecord>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 

@@ -28,7 +28,9 @@ namespace Travel.Application.TourLists.Commands.DeleteTourList
 
         public async Task<Unit> Handle(DeleteTourListCommand request,CancellationToken cancellationToken)
         {
-            var entity = await _context.TourLists.Where(l => l.Id == request.Id).SingleOrDefaultAsync(cancellationToken);
+            var entity = await _context.TourLists
+            .Where(l => l.Id == request.Id)
+            .SingleOrDefaultAsync(cancellationToken);
 
             if (entity == null)
             {
