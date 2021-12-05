@@ -26,21 +26,36 @@
         </v-btn>
       </router-link>
 
-      <v-btn color="primary" outlined :to="{ path: '/admin-dashboard' }">
+      <v-btn
+        v-if="isAuthenticated"
+        color="primary"
+        outlined
+        :to="{ path: '/admin-dashboard' }"
+      >
         <span class="menu">Dashboard</span>
       </v-btn>
-      <v-btn color="primary" outlined :to="{ path: '/login' }">
+      <v-btn v-else color="primary" outlined :to="{ path: '/login' }">
         <span class="menu">Login</span>
       </v-btn>
     </div>
   </v-app-bar>
 </template>
 <script>
-export default {name:"NavigationBar"};
+import { mapGetters } from "vuex";
+
+export default {
+  name: "NavigationBar",
+  computed: {
+    ...mapGetters("authModule", {
+      isAuthenticated: "isAuthenticated",
+      email: "email",
+    }),
+  },
+};
 </script>
 <style scoped>
-.menu{
-    color: white;
-    text-decoration: none;
+.menu {
+  color: white;
+  text-decoration: none;
 }
 </style>

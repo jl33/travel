@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import CreateLogger from "vuex/dist/logger";
 import tourModule from "./tour";
+import authModule from "./auth";
 
 Vue.use(Vuex);
 const debug=process.env.NODE_ENV !== "production";
@@ -13,6 +14,7 @@ export default new Vuex.Store({
   // actions: {},
   modules:{
     tourModule,
+    authModule,
   },
   plugins,
 });
