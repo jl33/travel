@@ -29,28 +29,25 @@
               <v-row>
                 <v-col cols="12" sm="6">
                   <v-text-field
-                    required
                     label="City"
                     v-model="bodyRequest.city"
-                  >
-                  </v-text-field>
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6">
                   <v-autocomplete
-                    required
                     :items="countryList"
                     label="Country"
                     v-model="bodyRequest.country"
-                  >
-                  </v-autocomplete>
+                    required
+                  ></v-autocomplete>
                 </v-col>
                 <v-col cols="12">
                   <v-textarea
                     label="About"
                     v-model="bodyRequest.about"
                     required
-                  >
-                  </v-textarea>
+                  ></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -83,12 +80,16 @@ import { mapActions } from "vuex";
 export default {
   name: "AddTourListForm",
   data: () => ({
-    bodyRequest: { city: "", country: "", about: "" },
+    bodyRequest: { 
+    city: "", 
+    country: "", 
+    about: "" 
+    },
     dialog: false,
-    countryList: getCountryList(),
+    countryList: getCountryList()
   }),
   methods: {
-    ...mapActions("tourModule", ["addTourListAction"]),
-  },
+    ...mapActions("tourModule", ["addTourListAction"])
+  }
 };
 </script>

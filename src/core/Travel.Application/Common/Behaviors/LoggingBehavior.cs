@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediatR.Pipeline;
+﻿using MediatR.Pipeline;
+using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace Travel.Application.Common.Behaviors
 {
@@ -16,7 +13,8 @@ namespace Travel.Application.Common.Behaviors
         {
             _logger = logger;
         }
-        public async Task Process(TRequest request,CancellationToken cancellationToken)
+
+        public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;
             _logger.LogInformation("Travel Request: {Name} {@Request}", requestName, request);

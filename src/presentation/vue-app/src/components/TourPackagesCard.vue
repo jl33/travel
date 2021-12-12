@@ -28,9 +28,7 @@
                     >
                       <v-list-item-subtitle
                         class="text--secondary"
-                        v-text="`Duration: ${tourPackage.duration}hrs`"
-                      >
-                      </v-list-item-subtitle>
+                        v-text="`Duration: ${tourPackage.duration}hrs`"></v-list-item-subtitle>
                       <v-list-item-subtitle
                         class="text--secondary"
                         v-text="
@@ -40,8 +38,7 @@
                               : ''
                           }`
                         "
-                      >
-                      </v-list-item-subtitle>
+                      ></v-list-item-subtitle>
                     </div>
                   </v-list-item-content>
                   <v-list-item-action>
@@ -59,8 +56,7 @@
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title 
-                v-text="'No package added yet 😢'">
-                </v-list-item-title>
+                v-text="'No package added yet 😢'"></v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </div>
@@ -80,8 +76,8 @@ export default {
 
   computed: {
     ...mapGetters("tourModule", {
-      packages: "packagesOfSelectedCity",
-    }),
+      packages: "packagesOfSelectedCity"
+    })
   },
   methods: {
     ...mapActions("tourModule", ["removeTourPackageAction"]),
@@ -91,7 +87,7 @@ export default {
       );
       if (!confirmed) return;
       this.removeTourPackageAction(packageId);
-    },
-  },
+    }
+  }
 };
 </script>

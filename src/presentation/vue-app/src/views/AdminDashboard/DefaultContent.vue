@@ -26,23 +26,23 @@ export default {
     TourListsCard,
     AddTourListForm,
     TourPackagesCard,
-    AddTourPackageForm,
+    AddTourPackageForm
   },
   methods: {
     ...mapActions("tourModule", ["getTourListsAction"]),
     handleShowPackages(show, listId) {
       this.showPackages = show;
       this.tourListId = listId;
-    },
+    }
   },
   data: () => ({
     showPackages: false,
-    tourListId: 0,
+    tourListId: 0
   }),
   mounted() {
     this.getTourListsAction();
     this.showPackages = false;
-  },
+  }
 };
 </script>
 <style scoped>

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -25,6 +24,7 @@ namespace Travel.Identity.Helpers
         public async Task Invoke(HttpContext context, IUserService userService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
             if (token != null)
                 AttachUserToContext(context, userService, token);
 
@@ -44,7 +44,6 @@ namespace Travel.Identity.Helpers
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ClockSkew = TimeSpan.Zero
-
                 }, out var validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
@@ -54,7 +53,6 @@ namespace Travel.Identity.Helpers
             }
             catch
             {
-
             }
         }
     }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Travel.Application.Common.Behaviors;
 using Microsoft.Extensions.Configuration;
+using Travel.Application.Common.Behaviors;
 
 namespace Travel.Application
 {

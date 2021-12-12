@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,19 +15,19 @@ namespace Travel.Application.TourPackages.Commands.UpdateTourPackageDetail
             _context = context;
 
             RuleFor(v => v.ListId)
-            .NotEmpty().WithMessage("ListId is required.");
+            .NotEmpty().WithMessage("ListId is required");
             RuleFor(v => v.WhatToExpect)
-            .NotEmpty().WithMessage("WhatToExpect is required.");
+            .NotEmpty().WithMessage("WhatToExpect is required");
             RuleFor(v => v.MapLocation)
-            .NotEmpty().WithMessage("MapLocation is required.");
+            .NotEmpty().WithMessage("MapLocation is required");
             RuleFor(v => v.Price)
-            .NotEmpty().WithMessage("Price is required.");
+            .NotEmpty().WithMessage("Price is required");
             RuleFor(v => v.Duration)
-            .NotEmpty().WithMessage("Duration is required.");
+            .NotEmpty().WithMessage("Duration is required");
             RuleFor(v => v.InstantConfirmation)
-            .NotEmpty().WithMessage("InstantConfirmation is required.");
+            .NotEmpty().WithMessage("InstantConfirmation is required");
             RuleFor(v => v.Currency)
-            .NotEmpty().WithMessage("Currency is required.");
+            .NotEmpty().WithMessage("Currency is required");
                 
         }
 

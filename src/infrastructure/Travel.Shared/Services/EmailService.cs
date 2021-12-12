@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿
 using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 using Travel.Application.Common.Exceptions;
 using Travel.Application.Common.Interfaces;
 using Travel.Application.Dtos.Email;

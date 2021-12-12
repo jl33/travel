@@ -1,4 +1,5 @@
 <template>
+  <!--  https://vuetifyjs.com/en/styles/colors/#material-colors-->
   <v-app>
     <v-dialog
       v-model="dialog"
@@ -40,8 +41,8 @@
                         type="password"
                         label="Password"
                         hint="At least 8 characters"
-                        v-model="login.password"
                         counter
+                        v-model="login.password"
                       ></v-text-field>
                     </v-col>
                     <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
@@ -118,8 +119,8 @@ export default {
     tab: null,
     login: {
       email: "",
-      password: "",
-    },
+      password: ""
+    }
   }),
   methods: {
     ...mapActions("authModule", ["loginUserAction"]),
@@ -130,7 +131,7 @@ export default {
     },
     navigateHome() {
       router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>

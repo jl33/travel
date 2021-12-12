@@ -48,9 +48,9 @@ export default {
   computed: {
     ...mapGetters("authModule", {
       isAuthenticated: "isAuthenticated",
-      email: "email",
-    }),
-  },
+      email: "email"
+    })
+  }
 };
 </script>
 <style scoped>

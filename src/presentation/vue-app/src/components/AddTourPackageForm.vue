@@ -8,15 +8,14 @@
                 color="pink" 
                 dark 
                 v-bind="attrs" 
-                v-on="on">
-                    <v-icon left>mdi-plus</v-icon>
+                v-on="on"><v-icon left>mdi-plus</v-icon>
                     add new tour package
                 </v-btn>
             </template>
             <v-card>
                 <form @submit.prevent="onSubmit">
                 <v-card-title>
-                    <span class="headline">Create new tour package</span>
+                    <span class="headline">Create New Tour Package</span>
                 </v-card-title>
                 <v-card-text>
                     <v-container>
@@ -64,19 +63,18 @@
                 </v-col>
                         </v-row>
                     </v-container>
-                    <small>* indicates Required field</small>
+                    <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" text @click="dialog=false">
                     Close
                     </v-btn>
-                    <v-btn color="blue darken-1" 
+                    <v-btn 
+                    color="blue darken-1" 
                     text 
                     @click="dialog=false" 
-                    type="submit">
-                    Save
-                    </v-btn>
+                    type="submit">Save</v-btn>
                 </v-card-actions>
                 </form>
             </v-card>
@@ -90,8 +88,8 @@ export default {
     name: "AddTourPackageForm",
     props:{
         tourListId: {
-            type: Number,
-        },
+            type: Number
+        }
     },
     data: ()=>({
         id:0,
@@ -102,13 +100,13 @@ export default {
             mapLocation: "https://www.google.com/maps/place/...",
             price: 10,
             duration: 1,
-            instantConfirmation: true,
+            instantConfirmation: true
     },
     dialog: false,
     currencies: ["USD","NOK"],
     currencyValues:[0,1],
     durations:[1,2,3,4,5,6,7,8],
-    durationValue: 1,
+    durationValue: 1
         
     }),
     methods:{
@@ -117,7 +115,7 @@ export default {
             this.bodyRequest.listId = this.tourListId;
             this.addTourPackageAction(this.bodyRequest);
             this.bodyRequest={};
-        },
-    },
+        }
+    }
 };
 </script>

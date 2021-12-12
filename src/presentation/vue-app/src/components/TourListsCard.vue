@@ -5,8 +5,7 @@
     max-width="450"
     height="100%"
     type="card"
-  >
-  </v-skeleton-loader>
+  ></v-skeleton-loader>
   <v-card v-else width="300" max-width="450" height="100%">
     <v-toolbar color="light-blue" dark>
       <v-toolbar-title> Tour Lists </v-toolbar-title>
@@ -36,16 +35,21 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "TourListsCard",
+
+  props: {
+    handleShowPackages: Function
+  },
+
   computed: {
     ...mapGetters("tourModule", {
       lists: "lists",
-      loading: "loading",
-    }),
+      loading: "loading"
+    })
   },
   methods: {
     ...mapActions("tourModule", [
       "removeTourListAction",
-      "getPackagesOfSelectedCityAction",
+      "getPackagesOfSelectedCityAction"
       ]),
     removeTourList(listId) {
       const confirmed = confirm(
@@ -57,7 +61,7 @@ export default {
     addToPackages(packages,listId) {
       this.getPackagesOfSelectedCityAction(packages);
       this.$emit("handleShowPackages",true,listId);
-    },
-  },
+    }
+  }
 };
 </script>

@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Travel.Domain.Entities
 {
     public class User
@@ -10,6 +6,7 @@ namespace Travel.Domain.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+
         public string Password { get; set; }
     }
 }

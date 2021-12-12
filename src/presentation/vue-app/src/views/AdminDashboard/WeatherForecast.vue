@@ -1,12 +1,10 @@
 <template>
-  <!-- <div>
-    <div><div class="text-h2 my-4">WeatherForecast</div></div>
-  </div> -->
+
   <v-container>
     <div class="text-h4 mb-10">
       Two-week weather forecast of different cities
     </div>
-    <div class="v-picker-full-width d-flex justify-center" v-if="loading">
+    <div class="v-picker--full-width d-flex justify-center" v-if="loading">
       <v-progress-circular 
       :size="70" 
       :width="7" 
@@ -43,9 +41,9 @@
             <td>{{ item.temperatureC }}</td>
             <td>{{ item.temperatureF }}</td>
             <td>
-              <v-chip :color="getColor(item.summary)" dark>
-                {{ item.summary }}
-              </v-chip>
+              <v-chip :color="getColor(item.summary)" dark>{{ 
+              item.summary 
+              }}</v-chip>
             </td>
           </tr>
         </tbody>
@@ -62,20 +60,19 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "WeatherForecast",
   async mounted() {
-    // await getWeatherForecastV2Axios("TPE");
     this.loading = true;
     dayjs.extend(relativeTime);
     await this.fetchWeatherForecast(this.selectedCity);
     this.loading = false;
     await this.getTourListsAction();
-    this.cities = this.lists.map((pl) => pl.city);
+    this.cities = this.lists.map(pl => pl.city);
   },
   data() {
     return {
       weatherForecast: [],
       cities: [],
       selectedCity: "Oslo",
-      loading: false,
+      loading: false
     };
   },
   methods: {
@@ -85,7 +82,7 @@ export default {
       try {
         const { data } = await getWeatherForecastV2Axios(city);
         console.log(data);
-        this.weatherForecast = data?.map((w) => {
+        this.weatherForecast = data?.map(w => {
           const formattedData = { ...w };
           let date = w.date;
           formattedData.date = dayjs(date).fromNow();
@@ -122,12 +119,12 @@ export default {
         default:
           return "grey";
       }
-    },
+    }
   },
   computed: {
     ...mapGetters("tourModule", {
-      lists: "lists",
-    }),
-  },
+      lists: "lists"
+    })
+  }
 };
 </script>

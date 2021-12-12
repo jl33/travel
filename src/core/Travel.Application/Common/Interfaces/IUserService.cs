@@ -1,6 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Travel.Application.Dtos.User;
 using Travel.Domain.Entities;
 

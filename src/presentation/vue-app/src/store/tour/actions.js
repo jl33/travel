@@ -5,7 +5,7 @@ deleteTourListAxios,
   postTourListAxios, 
   deleteTourPackageAxios, 
   postTourPackageAxios,
-putTourPackageAxios, 
+putTourPackageAxios
 } from "@/store/tour/services";
 
 export async function getTourListsAction({ commit }) {
@@ -37,8 +37,8 @@ export async function addTourListAction({commit},payload){
   commit(types.LOADING_TOUR,true);
   try{
     const {data} =await postTourListAxios(payload);
-    payload.id=data;
-    payload.tourPackages=[];
+    payload.id = data; // storing the id from the response int of ASP.NET Core, which will be used in the UI.
+    payload.tourPackages = []; // initialize the tourPackages of the newly created tourList
     commit(types.ADD_TOUR_LIST,payload);
   }catch(e){
     alert(e);
@@ -67,7 +67,7 @@ export async function addTourPackageAction({commit},payload){
   commit(types.LOADING_TOUR,true);
   try{
     const {data} =await postTourPackageAxios(payload);
-    payload.id=data;
+    payload.id = data; // storing the id from the response int of ASP.NET Core, which will be used in the UI.
     commit(types.ADD_TOUR_PACKAGE,payload);
   }catch(e){
     alert(e);

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using FluentValidation.Results;
 using System.Linq;
 
 namespace Travel.Application.Common.Exceptions
@@ -26,7 +25,7 @@ namespace Travel.Application.Common.Exceptions
                 Errors.Add(propertyName, propertyFailures);
             }
         }
-        public IDictionary<string, string[]> Errors { get; }
-    }
 
+    public IDictionary<string, string[]> Errors { get; }
+}
 }

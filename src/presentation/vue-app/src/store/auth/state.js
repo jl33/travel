@@ -1,9 +1,9 @@
 const state={
     signInState:{
-        email:'',
+        email:"",
         exp: Date.now(),
-        sub: '',
-        token: null,
+        sub: "",
+        token: null
     }
 };
 export default state;
