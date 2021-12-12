@@ -15,7 +15,7 @@
         </v-list-item>
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-subtitle>email here</v-list-item-subtitle>
+            <v-list-item-subtitle>{{email}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -58,7 +58,7 @@
             <v-list-item-icon>
               <v-icon>mdi-logout-variant</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Log Out</v-list-item-title>
+            <v-list-item-title>Log out</v-list-item-title>
           </v-list-item>
         </router-link>
       </v-list>
@@ -69,8 +69,26 @@
   </v-sheet>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
     name: "AdminDashboard",
+    methods:{
+      ...mapActions("authModule",["useLocalStorageTokenToSignInAction"]),
+      localstorageLogin(){
+        this.useLocalStorageTokenToSignInAction().then();
+      }
+    },
+    computed: {
+      ...mapGetters("authModule", {
+      isAuthenticated: "isAuthenticated",
+      email: "email"
+      })
+    },
+
+    mounted() {
+      this.localstorageLogin();
+    }
 };
 </script>
 <style scoped>

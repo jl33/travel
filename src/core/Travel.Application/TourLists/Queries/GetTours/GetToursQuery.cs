@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
+using System;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Travel.Application.Common.Interfaces;
 using Travel.Application.Dtos.Tour;
-using Microsoft.Extensions.Caching.Distributed;
-using Newtonsoft.Json;
 
 namespace Travel.Application.TourLists.Queries.GetTours
 {
@@ -33,8 +32,7 @@ namespace Travel.Application.TourLists.Queries.GetTours
         public async Task<ToursVm> Handle(GetToursQuery request, CancellationToken cancellationToken)
         {
             const string cacheKey = "GetTours";
-            ToursVm tourLists;
-            string serializedTourList;
+            ToursVm tourLists;  string serializedTourList;
             var redisTourLists = await _distributedCache.GetAsync(cacheKey, cancellationToken);
 
             if (redisTourLists == null)
@@ -59,12 +57,6 @@ namespace Travel.Application.TourLists.Queries.GetTours
             serializedTourList = Encoding.UTF8.GetString(redisTourLists);
             tourLists = JsonConvert.DeserializeObject<ToursVm>(serializedTourList);
             return tourLists;
-
-            //return new ToursVm
-            //{
-            //    Lists = await _context.TourLists.ProjectTo<TourListDto>(_mapper.ConfigurationProvider)
-            //    .OrderBy(t => t.City).ToListAsync(cancellationToken)
-            //};
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -23,7 +21,7 @@ namespace Travel.Application.TourPackages.Commands.CreateTourPackage
                 .MustAsync(BeUniqueName).WithMessage("The specified name already exists.");
 
             RuleFor(v => v.ListId)
-            .NotEmpty().WithMessage("ListId is required.");
+            .NotEmpty().WithMessage("ListId is required");
         }
 
         public async Task<bool> BeUniqueName(string name,CancellationToken cancellationToken)

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Travel.Application.Dtos.Tour;
 
 namespace Travel.Application.TourLists.Queries.GetTours

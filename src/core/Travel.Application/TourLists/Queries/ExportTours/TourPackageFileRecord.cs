@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using Travel.Application.Common.Mappings;
 using Travel.Domain.Entities;
 

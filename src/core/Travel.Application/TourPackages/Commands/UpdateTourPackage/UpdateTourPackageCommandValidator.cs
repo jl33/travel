@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -19,7 +17,6 @@ namespace Travel.Application.TourPackages.Commands.UpdateTourPackage
             RuleFor(v => v.Name)
             .NotEmpty().WithMessage("Name is required.")
                 .MaximumLength(200).WithMessage("Name must not exceed 200 characters.");
-                //.MustAsync(BeUniqueName).WithMessage("The specified name already exists.");
         }
 
         public async Task<bool> BeUniqueName(string name, CancellationToken cancellationToken)

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
 
 namespace Travel.WebApi.Controllers.v2
 {
@@ -13,29 +10,16 @@ namespace Travel.WebApi.Controllers.v2
     [Route("api/v{version:apiVersion}/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries =
-        {
+        private static readonly string[] Summaries =    {
             "Freezing","Bracing","Chilly","Cool","Mild","Warm","Balmy","Hot","Sweltering","Scorching"
         };
 
-        // private readonly ILogger<WeatherForecastController> _logger;
-
-        // public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        // {
-        //     _logger = logger;
-        // }
 
         [HttpPost]
         public IEnumerable<WeatherForecast> Post(string city)
         {
             var rng = new Random();
             return Enumerable.Range(1, 14).Select(index =>
-            // new WeatherForecast { 
-            // Date=DateTime.Now.AddDays(Index),
-            // TemperatureC=rng.Next(-20,55),
-            // Summary=Summaries[rng.Next(Summaries.Length)],
-            // City=city
-            // }).ToArray();
             {
                 var celsius = rng.Next(-5, 44);
 

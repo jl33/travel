@@ -1,6 +1,4 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +11,7 @@ using Travel.Application.Dtos.Tour;
 
 namespace Travel.Application.TourPackages.Queries
 {
-    public class GetTourPackagesQuery: IRequest<List<TourPackageDto>>
+    public class GetTourPackagesQuery : IRequest<List<TourPackageDto>>
     {
         public int ListId { get; set; }
     }
@@ -29,13 +27,14 @@ namespace Travel.Application.TourPackages.Queries
             _mapper = mapper;
         }
 
-        public Task<List<TourPackageDto>> Handle (GetTourPackagesQuery request,CancellationToken cancellationToken)
+        public Task<List<TourPackageDto>> Handle(GetTourPackagesQuery request, CancellationToken cancellationToken)
         {
             var tourPackages = _context.TourPackages
                 .Where(tp => tp.ListId == request.ListId)
                 .OrderBy(tp => tp.Name)
                 .ProjectTo<TourPackageDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
+            
             return tourPackages;
         }
     }

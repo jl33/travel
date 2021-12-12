@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using FluentValidation;
 using Travel.Application.Common.Interfaces;
 
@@ -19,11 +17,11 @@ namespace Travel.Application.TourLists.Commands.UpdateTourList
                 .MaximumLength(90).WithMessage("City must not exceed 90 characters.");
 
             RuleFor(v => v.Country)
-            .NotEmpty().WithMessage("Country is required.")
+            .NotEmpty().WithMessage("Country is required")
                 .MaximumLength(60).WithMessage("Country must not exceed 60 characters.");
 
             RuleFor(v => v.About)
-            .NotEmpty().WithMessage("About is required.");
+            .NotEmpty().WithMessage("About is required");
         }
     }
 }
