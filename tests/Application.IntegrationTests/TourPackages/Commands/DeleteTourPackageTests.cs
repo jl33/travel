@@ -31,7 +31,33 @@ namespace Application.IntegrationTests.TourPackages.Commands
             };
             FluentActions.Invoking(() => SendAsync(command)).Should().ThrowAsync<NotFoundException>();
         }
-        ///TODO: page.410
+        
+        [Fact]
+        public async Task ShouldDeleteTourPackage()
+        {
+            var listId = await SendAsync(new CreateTourListCommand
+            {
+                City = "Tashkent",
+                Country = "Uzbekistan",
+                About = "Lorem Ipsum"
+            });
+            var packageId = await SendAsync(new CreateTourPackageCommand
+            {
+                ListId = listId,
+                Name = "Silk Road Adventures",
+                Duration = 8,
+                Price = 80,
+                InstantConfirmation = false,
+                MapLocation = "Lorem Ipsum",
+                WhatToExpect = "Lorem Ipsum"
+            });
+            await SendAsync(new DeleteTourPackageCommand
+            {
+                Id = packageId
+            });
+            var list = await FindAsync<TourPackage>(listId);
+            list.Should().BeNull();
+        }
 
     }
 }
